@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% block title %}Hash password{% endblock %}
+{% extends "dash_login.html" %}
+{% block title %}Enc password{% endblock %}
 {% block content %}
 <div class="container mt-2">
     <!-- <h5 class="text-muted"><strong><i>Plain Text Passwords</i></strong></h5> -->
@@ -32,7 +32,7 @@
                             <form action="/adduser" method="POST">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">UserName</label>
-                                <input type="number" class="form-control" name="username" id="uname" minlength="6" maxlength="6"
+                                <input type="text" class="form-control" name="username" id="uname" maxlength="6" pattern="[0-9.]+"
                                     aria-describedby="emailHelp">
                                 <div id="emailHelp" class="form-text">We'll never share your id with anyone else.</div>
                             </div>
@@ -85,7 +85,7 @@
 </div>
 <!-- EncryptPassword -->
 <div class="container p-2">
-    <h5 class="text-muted"><strong><i>EncryptedPasswords</i></strong></h5>
+    <h5 class="text-muted"><strong><i>Encrypted Passwords</i></strong></h5>
 </div>
 <div class="container p-2">
     <table class="table table-bordered table-striped">
@@ -103,6 +103,36 @@
                 <td style="width:auto">{{data.username}}</td>
                 <td style="width:auto">{{data.encpass}}</td>
                 <td >{{data.created_At}}</td>
+                <!-- <td>
+                    <a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    <a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
+                </td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Decrypted Password -->
+<div class="container p-2">
+    <h5 class="text-muted"><strong><i>Decrypted Passwords</i></strong></h5>
+</div>
+<div class="container p-2">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>DecryptedPassword</th>
+                <th>Created_At</th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in DCP %}
+            <tr>
+                <td style="width:auto">{{data.username}}</td>
+                <td style="width:auto">{{data.password}}</td>
+                <td >{{data.current_date}}</td>
                 <!-- <td>
                     <a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
                     <a href="#" class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
