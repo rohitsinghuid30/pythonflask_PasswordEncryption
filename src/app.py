@@ -30,10 +30,11 @@ def mask_password(password):
     masked_password = password[:-4:2] + '*' * min(3, len(password))
     return masked_password
 
-
+# Home Page
 @app.route("/", methods=["GET", "POST"])
 def welcome():
-    return "Welcome to Pasword Encryption and Decryption Page."
+    return render_template("index.html")
+
 # Plain text/Encrypted/Decrypted Password
 @app.route("/users", methods=["GET"])
 def home():
@@ -111,7 +112,7 @@ def login():
         username=request.form["username"]
         password=request.form["password"]
         if (username=="test" and password=="test@123"):
-            return render_template("dash_login.html")
+            return redirect("/home")
         else:
             return "User not Active."
     return render_template("login.html")
@@ -125,6 +126,6 @@ def logout():
 # login welcome page
 @app.route("/home", methods=["GET", "POST"])
 def login_home():
-    return render_template("welcome.html")
+    return  render_template("welcome.html")
 
 
