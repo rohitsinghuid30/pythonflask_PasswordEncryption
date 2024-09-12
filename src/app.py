@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import pyodbc
 from datetime import datetime
+from flask_login import login_required
 
 # load enviroment
 load_dotenv()
@@ -120,6 +121,7 @@ def login():
 
 # logout
 @app.route("/logout", methods=["GET", "POST"])
+# @login_required
 def logout():
     return redirect("/login")
 
